@@ -18,15 +18,16 @@ class DotenvEditor
     */
     private $env;
     private $backupPath;
-    private $autoBackup = false;
+    private $autoBackup;
 
     /**
      * DotenvEditor constructor
      */
     public function __construct()
     {
-        $backupPath = config('dotenveditor.backupPath', base_path() . '/resources/backups/dotenv-editor/');
-        $env = config('dotenveditor.pathToEnv', base_path() . '/.env');
+        $backupPath = config('dotenveditor.backup_path', base_path() . '/storage/backups/dotenv-editor/');
+        $env = config('dotenveditor.path_to_env', base_path() . '/.env');
+        $autoBackup = config('dotenveditor.auto_backup', true);
 
         if(file_exists($env)){
             $this->env = $env;
@@ -38,6 +39,7 @@ class DotenvEditor
             mkdir($backupPath, 0777, true);
         }
         $this->backupPath = $backupPath;
+        $this->setAutoBackup($autoBackup);
     }
 
     /*
@@ -384,7 +386,7 @@ class DotenvEditor
             $c = 0;
             foreach($array as $key => $value){
                 if(is_string($value)) {
-                    $value = '"' . $value . '"';
+                    $value = '' . $value . '';
                 }
 
                 $newArray[$c] = $key . "=" . $value;

@@ -3,7 +3,7 @@
 if(config('dotenveditor.activated')){
     Route::group([
         'middleware' => config('dotenveditor.middleware'),
-        'middlewareGroups' => config('dotenveditor.middlewareGroups')
+        'middlewareGroups' => config('dotenveditor.middleware_groups')
     ],
         function(){
             Route::get(config('dotenveditor.route'), 'Jeylabs\DotenvEditor\Http\Controller\EnvController@overview');

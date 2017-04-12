@@ -4,9 +4,9 @@ return [
 
     // Change the paths, so they fit your needs
 
-    'pathToEnv'         =>  base_path() . '/.env',
-    'backupPath'        =>  base_path() . '/storage/backups/dotenv-editor/', // Make sure, you have a "/" at the end
-
+    'path_to_env'         =>  base_path() . '/.env',
+    'backup_path'        =>  base_path() . '/storage/backups/dotenv-editor/', // Make sure, you have a "/" at the end
+    'auto_backup'       => true,
 
     // Activate or deactivate the graphical interface
     'activated'         => true,
@@ -16,5 +16,5 @@ return [
 
     // middleware and middlewaregroups. Add your own middleware if you want.
     'middleware'        => ['web'],
-    'middlewareGroups'  => []
+    'middleware_groups'  => []
 ];
