@@ -3,14 +3,16 @@
     "description": "A package for editing the .env file in your Laravel root.",
     "keywords": ["laravel", "dotenv", "dotenv-editor"],
     "type": "library",
+    "homepage": "https://github.com/jeylabs/laravel-dotenv-editor",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jayakkumar Ratheepan",
-            "email": "ratheep.eymplon@jeylabs.com.au"
+            "name": "jeylabs",
+            "email": "ratheep.ceymplon@jeylabs.com.au",
+            "homepage": "https://jeylabs.com",
+            "role": "Developer"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
         "php": ">=5.5.9"
     },
@@ -18,5 +20,7 @@
         "psr-4": {
             "Jeylabs\\DotenvEditor\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
