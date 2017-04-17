@@ -51,7 +51,7 @@ Add the following line to your `config/app.php` providers:
 
 Add the following line to your `config/app.php` aliases:
 
-    'DotenvEditor' => Jeylabs\DotenvEditor\DotenvEditorFacade::class,
+    'DotenvEditor' => Jeylabs\DotenvEditor\Facades\DotenvEditor::class,
 
 Finally you have to publish the config file and view via:
 

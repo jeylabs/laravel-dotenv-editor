@@ -1,10 +1,10 @@
 <?php
 
-namespace Jeylabs\DotenvEditor;
+namespace Jeylabs\DotenvEditor\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class DotenvEditorFacade extends Facade
+class DotenvEditor extends Facade
 {
     protected static function getFacadeAccessor()
     {
