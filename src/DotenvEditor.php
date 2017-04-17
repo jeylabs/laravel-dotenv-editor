@@ -6,6 +6,7 @@ use Dotenv\Exception\InvalidPathException;
 use Jeylabs\DotenvEditor\Exceptions\DotEnvException;
 use Jeylabs\DotenvEditor\Jobs\EnvUpdate;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Jeylabs\DotenvEditor\Jobs\RestoreBackup;
 
 class DotenvEditor
 {
@@ -203,7 +204,7 @@ class DotenvEditor
             $file = $this->getFile($this->getLatestBackup()['unformatted']);
         }
 
-        return copy($file, $this->env);
+        $this->dispatch(new RestoreBackup($file, $this->env));
     }
 
     /**
