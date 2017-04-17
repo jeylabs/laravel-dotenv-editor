@@ -4,10 +4,12 @@ namespace Jeylabs\DotenvEditor;
 
 use Dotenv\Exception\InvalidPathException;
 use Jeylabs\DotenvEditor\Exceptions\DotEnvException;
-
+use Jeylabs\DotenvEditor\Jobs\EnvUpdate;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class DotenvEditor
 {
+    use DispatchesJobs;
     /*
     |--------------------------------------------------------------------------
     | Attributes and constructor
@@ -382,21 +384,7 @@ class DotenvEditor
     protected function save($array)
     {
         if(is_array($array)){
-            $newArray = array();
-            $c = 0;
-            foreach($array as $key => $value){
-                if(is_string($value)) {
-                    $value = '' . $value . '';
-                }
-
-                $newArray[$c] = $key . "=" . $value;
-                $c++;
-            }
-
-            $newArray = implode("\n", $newArray);
-
-            file_put_contents($this->env, $newArray);
-
+            $this->dispatch(new EnvUpdate($array, $this->env));
             return true;
         }
         return false;
