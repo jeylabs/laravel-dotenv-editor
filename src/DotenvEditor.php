@@ -3,6 +3,7 @@
 namespace Jeylabs\DotenvEditor;
 
 use Dotenv\Exception\InvalidPathException;
+use Illuminate\Support\Facades\File;
 use Jeylabs\DotenvEditor\Exceptions\DotEnvException;
 use Jeylabs\DotenvEditor\Jobs\EnvUpdate;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -40,10 +41,26 @@ class DotenvEditor
 
         if(!is_dir($backupPath)){
             mkdir($backupPath, 0777, true);
+            File::put($backupPath.'.gitignore',"*\n!.gitignore");
         }
         $this->backupPath = $backupPath;
         $this->setAutoBackup($autoBackup);
     }
+
+    /**
+     * Returns the current env-path
+     *
+     * @return mixed
+     */
+    public function setEnvPath($env)
+    {
+        if(file_exists($env)){
+            $this->env = $env;
+            return true;
+        }
+        return false;
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -75,6 +92,7 @@ class DotenvEditor
         if(!is_dir($path)){
             try {
                 mkdir($path, 0777, true);
+                File::put($path.'.gitignore',"*\n!.gitignore");
             }catch(InvalidPathException $e){
                 echo $e->getMessage();
                 return false;

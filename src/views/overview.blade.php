@@ -308,7 +308,7 @@ All needed files are included within this file, so nothing could break if you ex
                                     <div class="form-group">
                                         <label for="backup">{!! trans('dotenv-editor::views.upload_label') !!}</label>
                                         <input type="file" name="backup">
-					
+
                                     </div>
                                     <button type="submit" class="btn btn-primary" title="Ein Backup von deinem Computer hochladen">
                                         {!! trans('dotenv-editor::views.upload_button') !!}
@@ -336,7 +336,7 @@ All needed files are included within this file, so nothing could break if you ex
                     {name: "{{ trans('dotenv-editor::views.overview') }}", active: 1},
                     {name: "{{ trans('dotenv-editor::views.addnew') }}", active: 0},
                     {name: "{{ trans('dotenv-editor::views.backups') }}", active: 0},
-                    {name: "{{ trans('dotenv-editor::views.upload') }}", active: 0}
+{{--                    {name: "{{ trans('dotenv-editor::views.upload') }}", active: 0}--}}
                 ],
                 newEntry: {
                     key: "",

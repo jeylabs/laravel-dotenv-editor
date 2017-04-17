@@ -3,15 +3,18 @@
 
 namespace Jeylabs\DotenvEditor\Http\Controller;
 
+use Illuminate\Support\Facades\Storage;
 use Jeylabs\DotenvEditor\Exceptions\DotEnvException;
 use Illuminate\Routing\Controller as BaseController;
 
 use Jeylabs\DotenvEditor\DotenvEditor as Env;
-use Jeylabs\DotenvEditor\Exceptions\DotEnvExeption;
 use Illuminate\Http\Request;
+use Jeylabs\DotenvEditor\Jobs\UploadEnv;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class EnvController extends BaseController
 {
+    use DispatchesJobs;
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -143,7 +146,8 @@ class EnvController extends BaseController
     public function upload(Request $request)
     {
         $file = $request->file('backup');
-        $file->move(base_path(), ".env");
+        Storage::disk('local')->putFileAs('/tmp/', $file, '.env');
+        $this->dispatch(new UploadEnv());
         return redirect(config('dotenveditor.route'));
     }
 }
